@@ -1,0 +1,45 @@
+@theme {
+  /* Superfícies — dark premium com leve tom azulado, nunca preto puro */
+  --color-bg-base: #06070b;
+  --color-bg-elevated: #0d111c;
+  --color-bg-elevated-2: #131829;
+
+  /* Texto — branco puro reservado apenas para momentos de maior destaque */
+  --color-foreground: #e7eaf2;
+  --color-foreground-muted: #8a92a6;
+  --color-foreground-emphasis: #ffffff;
+
+  /* Azul premium — cor de marca, usada em grid, marcadores e CTAs */
+  --color-primary: #2f6fef;
+  --color-primary-glow: #6fa0ff;
+
+  /* Linhas */
+  --color-border: #1a2030;
+  --color-grid-line: #1e2a45;
+
+  /* Tipografia — placeholder até definição final de marca */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Raio — minimalista, sem exagero */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Easings assinatura — utilizáveis como classes ease-* e via var() no GSAP/Framer Motion */
+  --ease-signature: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  /* Durações — consumidas via var() por Framer Motion e GSAP, não geram utilities Tailwind */
+  --motion-duration-fast: 150ms;
+  --motion-duration-base: 300ms;
+  --motion-duration-slow: 600ms;
+  --motion-duration-cinematic: 900ms;
+
+  /* Camada Signal Grid */
+  --grid-line-opacity: 0.06;
+  --noise-opacity: 0.035;
+}
