@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { ReactLenis } from 'lenis/react'
-import { useMotionPreferences } from './MotionProvider'
+import { useMotionPreferences } from './motion-context'
 
 const LENIS_OPTIONS = {
   duration: 1.1,
