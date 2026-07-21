@@ -1,0 +1,1 @@
+export { Certificacao } from './Certificacao'

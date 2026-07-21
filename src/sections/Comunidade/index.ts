@@ -1,0 +1,1 @@
+export { Comunidade } from './Comunidade'
