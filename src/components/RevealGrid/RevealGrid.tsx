@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
-import { fadeUpContainer, fadeUpItem } from '@/animations/variants'
+import { weightedScaleContainer, weightedScaleItem } from '@/animations/variants'
 import { cn } from '@/utils/cn'
 
 interface RevealGridProps<T> {
@@ -13,14 +13,14 @@ interface RevealGridProps<T> {
 export function RevealGrid<T>({ items, renderItem, keyExtractor, className }: RevealGridProps<T>) {
   return (
     <motion.div
-      variants={fadeUpContainer}
+      variants={weightedScaleContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-10% 0px' }}
       className={cn('grid gap-6', className)}
     >
       {items.map((item, i) => (
-        <motion.div key={keyExtractor(item, i)} variants={fadeUpItem}>
+        <motion.div key={keyExtractor(item, i)} variants={weightedScaleItem} className="h-full">
           {renderItem(item, i)}
         </motion.div>
       ))}

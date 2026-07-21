@@ -5,7 +5,18 @@ import { hero } from '@/constants/content'
 import { useMotionPreferences } from '@/app/providers'
 import { Button } from '@/ui/Button'
 import { distances } from '@/animations/distances'
+import '@/animations/gsapEases'
 import { HeroMoment } from './HeroMoment'
+
+/** Deslocamento inicial de cada dot (offset a partir da própria âncora) — puxado para 0 na convergência. */
+const DOT_OFFSETS = [
+  { x: -90, y: -70 },
+  { x: 0, y: -95 },
+  { x: 90, y: -70 },
+  { x: -90, y: 70 },
+  { x: 0, y: 95 },
+  { x: 90, y: 70 },
+]
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -16,72 +27,96 @@ export function Hero() {
       const navbarEl = document.getElementById('site-navbar')
 
       if (prefersReducedMotion) {
-        gsap.set('.hero-eyebrow, .hero-word, .hero-subheadline, .hero-cta', {
+        gsap.set('.hero-word, .hero-subheadline, .hero-cta', {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: 'none',
         })
+        gsap.set(
+          '.hero-moment-dot, .hero-moment-bloom, .hero-moment-shockwave, .hero-boot-pulse, .hero-cta-pulse, .hero-branch-seed-line',
+          { opacity: 0 },
+        )
         if (navbarEl) gsap.set(navbarEl, { opacity: 1, y: 0 })
         return
       }
 
-      gsap.set('.hero-eyebrow', { opacity: 0, y: distances.sm })
+      gsap.set('.hero-eyebrow-inner', { yPercent: 110 })
       gsap.set('.hero-word', { opacity: 0, y: distances.md, filter: 'blur(6px)' })
       gsap.set('.hero-subheadline', { opacity: 0, y: distances.md })
-      gsap.set('.hero-cta', { opacity: 0, scale: 0.96 })
+      gsap.set('.hero-cta', { opacity: 0, scale: 0.94 })
       gsap.set('.hero-moment-dot', { opacity: 0 })
-      gsap.set('.hero-moment-dot-0', { x: -32, y: -24 })
-      gsap.set('.hero-moment-dot-1', { x: 32, y: -24 })
-      gsap.set('.hero-moment-dot-2', { x: -32, y: 24 })
-      gsap.set('.hero-moment-dot-3', { x: 32, y: 24 })
-      gsap.set('.hero-moment-bloom', { opacity: 0, scale: 0 })
+      DOT_OFFSETS.forEach((offset, i) => {
+        gsap.set(`.hero-moment-dot-${i}`, { x: offset.x, y: offset.y })
+      })
+      gsap.set('.hero-moment-bloom', { opacity: 0, scale: 0.3 })
+      gsap.set('.hero-moment-shockwave', { opacity: 0, scale: 0.4 })
       gsap.set('.hero-boot-pulse', { opacity: 0, x: -140, y: -110 })
       gsap.set('.hero-cta-pulse', { opacity: 0, y: 0 })
       gsap.set('.hero-branch-seed-line', { scaleY: 0, transformOrigin: 'top' })
       if (navbarEl) gsap.set(navbarEl, { opacity: 0, y: -8 })
 
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
+      const tl = gsap.timeline({ defaults: { ease: 'enter' } })
 
       // T 0.4–0.9 — primeiro pulso do Signal Grid, nascendo perto da navbar
-      tl.to('.hero-boot-pulse', { opacity: 1, x: 0, y: 0, duration: 0.5, ease: 'power1.in' }, 0.4)
+      tl.to('.hero-boot-pulse', { opacity: 1, x: 0, y: 0, duration: 0.5, ease: 'snap' }, 0.4)
       tl.to('.hero-boot-pulse', { opacity: 0, duration: 0.2 }, 0.85)
 
-      // T 0.9–1.3 — a navbar liga
+      // T 0.9–1.3 — a navbar liga, o eyebrow emerge através da máscara
       if (navbarEl) tl.to(navbarEl, { opacity: 1, y: 0, duration: 0.4 }, 0.9)
-      tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.3 }, 1.1)
+      tl.to('.hero-eyebrow-inner', { yPercent: 0, duration: 0.55, ease: 'enter' }, 1.0)
 
-      // T 1.3–2.6 — Build Reveal: a palavra-chave nasce primeiro (Hero Moment)
-      tl.to('.hero-word-keyword', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.5 }, 1.3)
-      tl.to('.hero-moment-dot', { opacity: 1, duration: 0.15 }, 1.3)
+      // T 1.3–1.5 — antecipação: a palavra-chave se comprime antes da ignição
+      tl.to('.hero-word-keyword', { scale: 0.96, duration: 0.2, ease: 'snap' }, 1.3)
+
+      // T 1.5–2.25 — ignição: Hero Moment converge, a keyword nasce com um punch
+      tl.to(
+        '.hero-word-keyword',
+        { opacity: 1, y: 0, filter: 'blur(0px)', scale: 1.06, duration: 0.4, ease: 'punch' },
+        1.5,
+      )
+      tl.to('.hero-word-keyword', { scale: 1, duration: 0.35, ease: 'punch' }, 1.9)
+      tl.to('.hero-moment-dot', { opacity: 1, duration: 0.15 }, 1.5)
       tl.to(
         '.hero-moment-dot',
-        { x: 0, y: 0, opacity: 0, scale: 0.4, duration: 0.55, ease: 'power2.in' },
-        1.35,
+        { x: 0, y: 0, opacity: 0, scale: 0.3, duration: 0.65, ease: 'punch', stagger: 0.02 },
+        1.55,
+      )
+      tl.fromTo(
+        '.hero-moment-shockwave',
+        { opacity: 0.8, scale: 0.4 },
+        { opacity: 0, scale: 1.7, duration: 0.7, ease: 'snap' },
+        1.85,
       )
       tl.fromTo(
         '.hero-moment-bloom',
-        { opacity: 0, scale: 0 },
-        { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' },
-        1.75,
+        { opacity: 0, scale: 0.3 },
+        { opacity: 1, scale: 1, duration: 0.3, ease: 'punch' },
+        1.9,
       )
-      tl.to('.hero-moment-bloom', { opacity: 0, scale: 1.4, duration: 0.5, ease: 'power2.out' }, 1.95)
+      tl.to('.hero-moment-bloom', { opacity: 0, scale: 1.5, duration: 0.55, ease: 'snap' }, 2.15)
       tl.to(
         '.hero-word:not(.hero-word-keyword)',
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4, stagger: 0.07 },
-        1.55,
+        {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.4,
+          stagger: { each: 0.07, ease: 'power1.inOut' },
+        },
+        1.75,
       )
 
-      // T 2.6–3.4 — subheadline
-      tl.to('.hero-subheadline', { opacity: 1, y: 0, duration: 0.5 }, 2.6)
+      // T 2.9–3.4 — subheadline
+      tl.to('.hero-subheadline', { opacity: 1, y: 0, duration: 0.5, ease: 'enter' }, 2.9)
 
-      // T 3.4–4.0 — o CTA se planta, segundo pulso desce
-      tl.to('.hero-cta', { opacity: 1, scale: 1, duration: 0.4 }, 3.4)
-      tl.to('.hero-cta-pulse', { opacity: 1, y: 56, duration: 0.5, ease: 'power1.in' }, 3.5)
-      tl.to('.hero-cta-pulse', { opacity: 0, duration: 0.2 }, 3.9)
+      // T 3.5–4.1 — o CTA aterrissa com peso, segundo pulso desce
+      tl.to('.hero-cta', { opacity: 1, scale: 1, duration: 0.5, ease: 'punch' }, 3.5)
+      tl.to('.hero-cta-pulse', { opacity: 1, y: 56, duration: 0.5, ease: 'snap' }, 3.6)
+      tl.to('.hero-cta-pulse', { opacity: 0, duration: 0.2 }, 4.0)
 
-      // T 4.0–5.0 — a trilha nasce
-      tl.to('.hero-branch-seed-line', { scaleY: 1, duration: 0.8, ease: 'power2.out' }, 4.0)
+      // T 4.1–4.9 — a trilha nasce, firmando a conexão com o resto da página
+      tl.to('.hero-branch-seed-line', { scaleY: 1, duration: 0.8, ease: 'signature' }, 4.1)
     },
     { scope: containerRef, dependencies: [prefersReducedMotion] },
   )
@@ -91,8 +126,8 @@ export function Hero() {
       ref={containerRef}
       className="relative flex min-h-svh flex-col items-center justify-center gap-8 px-container-x text-center"
     >
-      <span className="hero-eyebrow text-mono-label text-primary font-mono uppercase">
-        {hero.eyebrow}
+      <span className="hero-eyebrow text-mono-label text-primary font-mono inline-block overflow-hidden uppercase">
+        <span className="hero-eyebrow-inner inline-block">{hero.eyebrow}</span>
       </span>
 
       <h1 className="text-display max-w-4xl text-foreground">

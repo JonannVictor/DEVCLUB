@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { BuildReveal } from '@/components/BuildReveal'
+import { MaskReveal } from '@/components/MaskReveal'
 import { fadeUpItem } from '@/animations/variants'
 import { cn } from '@/utils/cn'
 import { toTokens } from '@/utils/text'
@@ -23,15 +24,9 @@ export function SectionHeading({
 
   return (
     <div className={cn('flex flex-col gap-4', alignment, className)}>
-      <motion.span
-        variants={fadeUpItem}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="text-mono-label text-primary font-mono uppercase"
-      >
+      <MaskReveal className="text-mono-label text-primary font-mono uppercase">
         {eyebrow}
-      </motion.span>
+      </MaskReveal>
 
       <BuildReveal as="h1" tokens={toTokens(title)} className="text-h1 text-foreground max-w-3xl" />
 
