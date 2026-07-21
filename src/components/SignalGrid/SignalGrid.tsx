@@ -44,23 +44,29 @@ export function SignalGrid() {
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden>
       <div className="signal-grid__mesh" />
       <div className="signal-grid__noise" />
-      <motion.div className="absolute inset-0" style={{ opacity: smoothIntensity }}>
-        {PULSES.map((pulse, i) => (
-          <span
-            key={i}
-            className={cn('signal-grid__pulse', pulse.axis === 'y' && 'signal-grid__pulse--vertical')}
-            style={
-              {
-                top: pulse.top,
-                left: pulse.left,
-                animationDuration: `${pulse.duration}s`,
-                animationDelay: `${pulse.delay}s`,
-                '--pulse-distance': `${pulse.distance}px`,
-              } as CSSProperties
-            }
-          />
-        ))}
-      </motion.div>
+      {/* Dormente até a Hero acordar o sistema (Ato 1) — ver Hero.tsx, que controla esta opacidade via GSAP. */}
+      <div id="signal-grid-ambient" className="absolute inset-0 opacity-0">
+        <motion.div className="absolute inset-0" style={{ opacity: smoothIntensity }}>
+          {PULSES.map((pulse, i) => (
+            <span
+              key={i}
+              className={cn(
+                'signal-grid__pulse',
+                pulse.axis === 'y' && 'signal-grid__pulse--vertical',
+              )}
+              style={
+                {
+                  top: pulse.top,
+                  left: pulse.left,
+                  animationDuration: `${pulse.duration}s`,
+                  animationDelay: `${pulse.delay}s`,
+                  '--pulse-distance': `${pulse.distance}px`,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </motion.div>
+      </div>
     </div>
   )
 }
