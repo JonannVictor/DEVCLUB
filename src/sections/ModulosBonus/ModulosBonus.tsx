@@ -1,23 +1,18 @@
 import { modulosBonus } from '@/constants/content'
-import { Section } from '@/components/Section'
-import { RevealGrid } from '@/components/RevealGrid'
-import { Card } from '@/ui/Card'
-import type { SimpleCard } from '@/types/content'
+import { Container } from '@/ui/Container'
+import { SectionHeading } from '@/components/SectionHeading'
+import { BonusMarquee } from './BonusMarquee'
 
 export function ModulosBonus() {
   return (
-    <Section id="modulos-bonus" eyebrow={modulosBonus.eyebrow} title={modulosBonus.title}>
-      <RevealGrid<SimpleCard>
-        items={modulosBonus.items}
-        keyExtractor={(item) => item.title}
-        className="grid-cols-1 md:grid-cols-3"
-        renderItem={(item) => (
-          <Card interactive className="h-full text-left">
-            <h3 className="text-h3 text-foreground">{item.title}</h3>
-            <p className="text-body text-foreground-muted mt-3">{item.description}</p>
-          </Card>
-        )}
-      />
-    </Section>
+    <section id="modulos-bonus" className="py-section-y relative overflow-hidden">
+      <Container>
+        <SectionHeading eyebrow={modulosBonus.eyebrow} title={modulosBonus.title} />
+      </Container>
+
+      <div className="mt-16">
+        <BonusMarquee items={modulosBonus.items} />
+      </div>
+    </section>
   )
 }
