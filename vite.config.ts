@@ -5,7 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/DEVCLUB/',
+  // GitHub Pages serves this project from a /DEVCLUB/ subpath; Vercel serves it from the domain root.
+  base: process.env.VERCEL ? '/' : '/DEVCLUB/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
