@@ -1,23 +1,20 @@
 import { plataforma } from '@/constants/content'
-import { Section } from '@/components/Section'
-import { RevealGrid } from '@/components/RevealGrid'
-import { Card } from '@/ui/Card'
-import type { SimpleCard } from '@/types/content'
+import { Container } from '@/ui/Container'
+import { SectionHeading } from '@/components/SectionHeading'
+import { TrackList } from './TrackList'
+import { AppMockup } from './AppMockup'
 
 export function Plataforma() {
   return (
-    <Section id="plataforma" eyebrow={plataforma.eyebrow} title={plataforma.title}>
-      <RevealGrid<SimpleCard>
-        items={plataforma.items}
-        keyExtractor={(item) => item.title}
-        className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-        renderItem={(item) => (
-          <Card interactive className="h-full text-left">
-            <h3 className="text-h3 text-foreground">{item.title}</h3>
-            <p className="text-body text-foreground-muted mt-3">{item.description}</p>
-          </Card>
-        )}
-      />
-    </Section>
+    <section id="plataforma" className="py-section-y relative">
+      <Container>
+        <SectionHeading eyebrow={plataforma.eyebrow} title={plataforma.title} align="left" />
+
+        <div className="mt-16 grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <TrackList items={plataforma.items} />
+          <AppMockup />
+        </div>
+      </Container>
+    </section>
   )
 }
