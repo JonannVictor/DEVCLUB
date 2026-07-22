@@ -9,6 +9,27 @@
   );
 }
 
+.bonus-marquee::before,
+.bonus-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(2.5rem, 10vw, 7rem);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bonus-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg-base), transparent);
+}
+
+.bonus-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg-base), transparent);
+}
+
 /*
  * Mesma técnica da faixa de logos da Empresas: dois blocos idênticos lado a lado,
  * animar até -50% move exatamente um bloco inteiro para fora — loop perfeito.
