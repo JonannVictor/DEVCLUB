@@ -13,6 +13,14 @@ import type {
   StatItem,
   TechItem,
 } from '@/types/content'
+import nubankLogo from '@/assets/logos/nubank.svg'
+import ifoodLogo from '@/assets/logos/ifood.svg'
+import magaluLogo from '@/assets/logos/magalu.svg'
+import mercadoLivreLogo from '@/assets/logos/mercado-livre.svg'
+import itauLogo from '@/assets/logos/itau.svg'
+import c6bankLogo from '@/assets/logos/c6bank.svg'
+import stoneLogo from '@/assets/logos/stone.svg'
+import ambevLogo from '@/assets/logos/ambev.svg'
 
 export const hero = {
   eyebrow: 'Formação em Desenvolvimento Web',
@@ -31,14 +39,14 @@ export const empresas = {
   eyebrow: 'Onde nossos alunos estão',
   title: 'Empresas onde nossos alunos constroem suas carreiras.',
   companies: [
-    { name: 'Nubank' },
-    { name: 'iFood' },
-    { name: 'Magalu' },
-    { name: 'Mercado Livre' },
-    { name: 'Itaú' },
-    { name: 'C6 Bank' },
-    { name: 'Stone' },
-    { name: 'Ambev Tech' },
+    { name: 'Nubank', logo: nubankLogo },
+    { name: 'iFood', logo: ifoodLogo },
+    { name: 'Magalu', logo: magaluLogo },
+    { name: 'Mercado Livre', logo: mercadoLivreLogo },
+    { name: 'Itaú', logo: itauLogo },
+    { name: 'C6 Bank', logo: c6bankLogo },
+    { name: 'Stone', logo: stoneLogo },
+    { name: 'Ambev Tech', logo: ambevLogo },
   ] satisfies CompanyItem[],
 }
 
