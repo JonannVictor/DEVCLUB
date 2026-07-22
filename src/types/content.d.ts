@@ -19,6 +19,8 @@ export interface TechItem {
 
 export interface CompanyItem {
   name: string
+  /** Caminho para o SVG oficial do logotipo. Ausente = usa o nome como placeholder tipográfico. */
+  logo?: string
 }
 
 export interface ProjectItem {

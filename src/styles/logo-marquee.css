@@ -1,0 +1,28 @@
+.logo-marquee {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/*
+ * A faixa contém dois blocos idênticos de logos lado a lado; animar translateX até -50%
+ * move exatamente um bloco inteiro para fora — o loop fecha sem salto, sem depender de
+ * medir largura via JS.
+ */
+.logo-marquee__track {
+  animation: logo-marquee-scroll 70s linear infinite;
+}
+
+@keyframes logo-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee__track {
+    animation: none;
+  }
+}

@@ -29,7 +29,7 @@ export const hero = {
 
 export const empresas = {
   eyebrow: 'Onde nossos alunos estão',
-  title: 'Formamos profissionais que hoje atuam em empresas de tecnologia de todos os portes.',
+  title: 'Empresas onde nossos alunos constroem suas carreiras.',
   companies: [
     { name: 'Nubank' },
     { name: 'iFood' },
