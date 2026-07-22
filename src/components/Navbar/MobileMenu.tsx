@@ -51,7 +51,7 @@ export function MobileMenu({ open, links, onLinkClick }: MobileMenuProps) {
               className="mt-6"
             >
               <Button href="#formacoes" size="md" className="w-full" onClick={onLinkClick}>
-                Começar agora
+                Quero ser aluno
               </Button>
             </motion.div>
           </nav>

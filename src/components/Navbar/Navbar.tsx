@@ -8,11 +8,10 @@ import { MobileMenu } from './MobileMenu'
 
 const NAV_LINKS = [
   { label: 'Formações', href: '#formacoes' },
-  { label: 'Tecnologias', href: '#tecnologias' },
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Professores', href: '#professores' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Faculdade', href: '#certificacao' },
 ]
+
+const MOBILE_LINKS = [...NAV_LINKS, { label: 'Área do Aluno', href: '#' }]
 
 export function Navbar() {
   const { scrollY } = useScroll()
@@ -64,15 +63,21 @@ export function Navbar() {
             </a>
           ))}
         </nav>
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-6 md:flex">
+          <a
+            href="#"
+            className="text-small text-foreground-muted transition-colors hover:text-foreground"
+          >
+            Área do Aluno
+          </a>
           <Button href="#formacoes" size="md" variant="ghost">
-            Começar agora
+            Quero ser aluno
           </Button>
         </div>
         <MenuToggle open={menuOpen} onClick={() => setMenuOpen((v) => !v)} />
       </Container>
 
-      <MobileMenu open={menuOpen} links={NAV_LINKS} onLinkClick={() => setMenuOpen(false)} />
+      <MobileMenu open={menuOpen} links={MOBILE_LINKS} onLinkClick={() => setMenuOpen(false)} />
     </header>
   )
 }

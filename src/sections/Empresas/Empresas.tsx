@@ -1,5 +1,7 @@
 import { empresas } from '@/constants/content'
 import { Container } from '@/ui/Container'
+import { Badge } from '@/ui/Badge'
+import { CountUp } from '@/components/CountUp'
 import { LogoMarquee } from './LogoMarquee'
 
 /**
@@ -9,7 +11,11 @@ import { LogoMarquee } from './LogoMarquee'
 export function Empresas() {
   return (
     <section id="empresas" className="py-section-y relative">
-      <Container>
+      <Container className="flex flex-col items-center">
+        <Badge className="mb-5">
+          <CountUp value={empresas.alumniStat} className="mr-1" />
+          {empresas.alumniLabel}
+        </Badge>
         <p className="text-small text-foreground-muted mx-auto mb-16 max-w-sm text-center md:mb-20 md:max-w-md">
           {empresas.title}
         </p>

@@ -37,7 +37,9 @@ export const hero = {
 
 export const empresas = {
   eyebrow: 'Onde nossos alunos estão',
-  title: 'Empresas onde nossos alunos constroem suas carreiras.',
+  alumniStat: '+25 mil',
+  alumniLabel: 'alunos já passaram por aqui',
+  title: 'Alunos nas maiores empresas do Brasil e do mundo:',
   companies: [
     { name: 'Nubank', logo: nubankLogo },
     { name: 'iFood', logo: ifoodLogo },
@@ -74,62 +76,91 @@ export const formacoes = {
 
 export const tecnologias = {
   eyebrow: 'Tecnologias',
-  title: 'As ferramentas que o mercado realmente usa.',
+  title: 'Formações completas para aprender tudo do zero ao avançado.',
+  description:
+    'Aprenda as principais tecnologias do mercado — do zero, de forma didática, com os melhores profissionais do mercado.',
   items: [
-    { name: 'HTML' },
-    { name: 'CSS' },
-    { name: 'JavaScript' },
-    { name: 'TypeScript' },
+    { name: 'Programação Front End' },
+    { name: 'Programação Back End' },
+    { name: 'Programação Full Stack' },
+    { name: 'Programação Mobile' },
     { name: 'React' },
-    { name: 'Node.js' },
-    { name: 'Git & GitHub' },
-    { name: 'SQL' },
-    { name: 'APIs REST' },
+    { name: 'Node' },
+    { name: 'JavaScript Completo' },
+    { name: 'HTML5' },
+    { name: 'CSS3' },
+    { name: 'Gestor de IA' },
+    { name: 'IA e Automações' },
+    { name: 'Claude & Claude Code' },
+    { name: 'Trilha N8N' },
+    { name: 'Análise de Dados' },
+    { name: 'PowerBI' },
   ] satisfies TechItem[],
 }
 
 export const alemDoCodigo = {
   eyebrow: 'Tudo além do código',
-  title: 'Formação técnica não é suficiente. Preparamos você para o mercado.',
+  title: 'Tudo que você precisa além do código para evoluir mais rápido.',
   items: [
     {
-      title: 'Currículo e LinkedIn',
-      description: 'Como se posicionar para recrutadores e passar pelos primeiros filtros.',
+      title: 'Recrutadora dedicada',
+      description: 'Acompanhamento da nossa recrutadora semanalmente, do currículo à colocação.',
     },
     {
-      title: 'Entrevista técnica',
-      description: 'Simulações reais de processos seletivos, do desafio técnico à entrevista final.',
+      title: 'Terapeuta de alta performance',
+      description: 'Suporte emocional focado em alta performance ao longo de toda a jornada.',
     },
     {
-      title: 'Portfólio',
-      description: 'Projetos que comprovam o que você sabe fazer — não apenas o que você diz saber.',
+      title: 'Mentorias semanais',
+      description: 'Encontros semanais com os melhores profissionais de tecnologia do mercado.',
     },
     {
-      title: 'Soft skills',
-      description: 'Comunicação, trabalho em equipe e autonomia — o que diferencia um júnior contratável.',
+      title: 'Agentes de IA 24h',
+      description: 'Dezenas de agentes de IA prontos para te ajudar a qualquer hora do dia.',
+    },
+    {
+      title: 'Suporte humano 7 dias',
+      description: 'Dúvidas respondidas por pessoas reais, todos os dias da semana.',
+    },
+    {
+      title: 'A maior comunidade tech',
+      description: 'A maior e melhor comunidade de profissionais de tecnologia do Brasil.',
+    },
+    {
+      title: 'Vagas exclusivas',
+      description: 'Oportunidades de emprego exclusivas para alunos da formação.',
     },
   ] satisfies SimpleCard[],
 }
 
 export const plataforma = {
   eyebrow: 'Plataforma',
-  title: 'Estude no seu ritmo, sem perder o rumo.',
+  title:
+    'Você terá acesso a uma plataforma moderna de aulas, nossa comunidade, área de vagas, IAs para acelerar seu progresso e tudo com suporte dos professores.',
   items: [
     {
-      title: 'Aulas sob demanda',
-      description: 'Conteúdo gravado, disponível 24h, no seu tempo e na sua velocidade.',
+      title: 'Plataforma de ensino',
+      description: 'Interface moderna, feita para você focar em aprender, não em navegar.',
     },
     {
-      title: 'Trilha de progresso',
-      description: 'Você sempre sabe exatamente onde está e o que vem a seguir.',
+      title: 'Trilhas e Formações',
+      description: 'Cursos organizados por trilhas e formações, do zero ao avançado.',
     },
     {
-      title: 'Exercícios práticos',
-      description: 'Cada módulo termina com prática real, não apenas teoria.',
+      title: 'Comunidade de alunos',
+      description: 'Milhares de alunos trocando conhecimento e se ajudando todos os dias.',
     },
     {
-      title: 'Suporte direto',
-      description: 'Dúvidas respondidas por quem entende do assunto, sem enrolação.',
+      title: 'Club Agents',
+      description: 'Agentes de IA integrados à plataforma para acelerar o seu progresso.',
+    },
+    {
+      title: 'Playground de treinamento',
+      description: 'Ambiente prático para testar, errar e aprender construindo de verdade.',
+    },
+    {
+      title: 'Mural da fama',
+      description: 'Reconhecimento público para os alunos que mais se destacam.',
     },
   ] satisfies SimpleCard[],
 }
@@ -160,7 +191,7 @@ export const comunidade = {
   eyebrow: 'Comunidade',
   title: 'Você não caminha sozinho.',
   description:
-    'Milhares de alunos e ex-alunos trocando conhecimento, tirando dúvidas e se ajudando a cada etapa — antes, durante e depois da formação.',
+    'Milhares de vidas transformadas dentro da nossa comunidade — alunos e ex-alunos trocando conhecimento, tirando dúvidas e se ajudando a cada etapa, antes, durante e depois da formação.',
 }
 
 export const professores = {
@@ -184,7 +215,7 @@ export const professores = {
 
 export const modulosBonus = {
   eyebrow: 'Módulos bônus',
-  title: 'Mais do que a formação principal.',
+  title: 'Módulos bônus para te levar mais longe.',
   items: [
     { title: 'Git avançado', description: 'Fluxos de versionamento usados em times reais de engenharia.' },
     { title: 'Inglês técnico', description: 'O vocabulário que você precisa para ler documentação e trabalhar fora do Brasil.' },
@@ -194,7 +225,7 @@ export const modulosBonus = {
 
 export const certificacao = {
   eyebrow: 'Certificação',
-  title: 'Um certificado que representa sua evolução real.',
+  title: 'Escola reconhecida pelo MEC, com diplomas oficiais.',
   description:
     'Emitido ao final da formação, com validação de todos os projetos práticos entregues ao longo da jornada.',
 }

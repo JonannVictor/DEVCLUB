@@ -1,0 +1,16 @@
+.tech-scroll {
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tech-scroll::-webkit-scrollbar {
+  display: none;
+}
