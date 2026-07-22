@@ -5,26 +5,10 @@ import { Card } from '@/ui/Card'
 import { CornerFrame } from '@/components/CornerFrame'
 import type { InstructorItem } from '@/types/content'
 
-const STOPWORDS = new Set(['especialista', 'em', 'de', 'da', 'do'])
-
-function meaningfulWords(role: string): string[] {
-  return role
-    .toLowerCase()
-    .split(/\s+/)
-    .filter((word) => !STOPWORDS.has(word))
-}
-
-function initialsFrom(role: string): string {
-  return meaningfulWords(role)
-    .join(' ')
-    .split(/[\s-]+/)
-    .slice(0, 2)
-    .map((word) => word[0]?.toUpperCase() ?? '')
-    .join('')
-}
-
-function handleFrom(role: string): string {
-  return `@${meaningfulWords(role).join('-')}`
+function initialsFrom(name: string): string {
+  const words = name.trim().split(/\s+/)
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase()
+  return `${words[0][0]}${words[words.length - 1][0]}`.toUpperCase()
 }
 
 export function Professores() {
@@ -32,22 +16,21 @@ export function Professores() {
     <Section id="professores" eyebrow={professores.eyebrow} title={professores.title}>
       <RevealGrid<InstructorItem>
         items={professores.instructors}
-        keyExtractor={(instructor) => instructor.role}
-        className="grid-cols-1 md:grid-cols-3"
+        keyExtractor={(instructor) => instructor.name}
+        className="grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
         renderItem={(instructor) => (
-          <Card interactive className="h-full text-left">
-            <div className="flex items-center gap-4">
-              <CornerFrame className="p-1.5">
-                <div className="bg-elevated-2 text-foreground-muted text-small flex size-12 items-center justify-center rounded-full font-mono">
-                  {initialsFrom(instructor.role)}
-                </div>
-              </CornerFrame>
-              <span className="text-mono-label text-foreground-muted/70 font-mono">
-                {handleFrom(instructor.role)}
-              </span>
+          <Card interactive className="flex h-full flex-col items-center gap-3 text-center">
+            <CornerFrame className="p-1.5">
+              <div className="bg-elevated-2 text-foreground-muted text-small flex size-14 items-center justify-center rounded-full font-mono">
+                {initialsFrom(instructor.name)}
+              </div>
+            </CornerFrame>
+            <div>
+              <h3 className="text-h3 text-foreground">{instructor.name}</h3>
+              <p className="text-mono-label text-foreground-muted/70 mt-1 font-mono uppercase">
+                {instructor.role}
+              </p>
             </div>
-            <h3 className="text-h3 text-foreground mt-4">{instructor.role}</h3>
-            <p className="text-body text-foreground-muted mt-3">{instructor.bio}</p>
           </Card>
         )}
       />

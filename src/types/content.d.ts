@@ -30,8 +30,15 @@ export interface ProjectItem {
 }
 
 export interface InstructorItem {
+  name: string
   role: string
-  bio: string
+  bio?: string
+}
+
+export interface TestimonialItem {
+  quote: string
+  name: string
+  role: string
 }
 
 export interface StatItem {

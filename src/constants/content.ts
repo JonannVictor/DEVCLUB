@@ -12,6 +12,7 @@ import type {
   SimpleCard,
   StatItem,
   TechItem,
+  TestimonialItem,
 } from '@/types/content'
 import nubankLogo from '@/assets/logos/nubank.svg'
 import ifoodLogo from '@/assets/logos/ifood.svg'
@@ -192,24 +193,47 @@ export const comunidade = {
   title: 'Você não caminha sozinho.',
   description:
     'Milhares de vidas transformadas dentro da nossa comunidade — alunos e ex-alunos trocando conhecimento, tirando dúvidas e se ajudando a cada etapa, antes, durante e depois da formação.',
+  /** Ilustrativos — depoimentos reais entram assim que o usuário fornecer. */
+  testimonials: [
+    {
+      quote:
+        'Entrei sem saber nada de programação e em 8 meses fechei minha primeira vaga como front-end. A comunidade puxava a gente pra cima o tempo todo.',
+      name: 'Camila R.',
+      role: 'Formação Front-end',
+    },
+    {
+      quote:
+        'O que mais mudou pra mim não foi só o código — foi ter gente pra trocar ideia às 23h numa sexta-feira porque travei num bug. Isso não tem preço.',
+      name: 'Lucas M.',
+      role: 'Formação Full Stack',
+    },
+    {
+      quote:
+        'Vim de outra área, achei que ia demorar anos. Com a trilha certa e o pessoal da comunidade revisando meu código, consegui migrar em menos de um ano.',
+      name: 'Beatriz A.',
+      role: 'Formação Back-end',
+    },
+    {
+      quote:
+        'As mentorias semanais valeram sozinhas o curso inteiro. Aprendi mais sobre carreira ali do que em anos tentando descobrir sozinho.',
+      name: 'Thiago N.',
+      role: 'Formação Full Stack',
+    },
+  ] satisfies TestimonialItem[],
 }
 
 export const professores = {
   eyebrow: 'Quem ensina',
-  title: 'Aprenda com quem constrói software todos os dias.',
+  title: 'Aprenda com os melhores.',
+  /** Nomes reais confirmados; cargo/bio/foto entram assim que o usuário fornecer. */
   instructors: [
-    {
-      role: 'Especialista em Front-end',
-      bio: 'Anos de experiência construindo interfaces para produtos usados por milhões de pessoas.',
-    },
-    {
-      role: 'Especialista em Back-end',
-      bio: 'Arquitetura de sistemas e bancos de dados em ambientes de alta escala.',
-    },
-    {
-      role: 'Especialista em Carreira Tech',
-      bio: 'Já esteve dos dois lados do processo seletivo — como candidato e como entrevistador.',
-    },
+    { name: 'Rodolfo Mori', role: 'Instrutor(a)' },
+    { name: 'Fernanda', role: 'Instrutor(a)' },
+    { name: 'Agustinho', role: 'Instrutor(a)' },
+    { name: 'Henrique', role: 'Instrutor(a)' },
+    { name: 'Márcio', role: 'Instrutor(a)' },
+    { name: 'Juliana', role: 'Instrutor(a)' },
+    { name: 'Mateus', role: 'Instrutor(a)' },
   ] satisfies InstructorItem[],
 }
 
