@@ -3,16 +3,6 @@ import { durations } from './durations'
 import { easings } from './easings'
 import { distances } from './distances'
 
-export const buildRevealContainer: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.04,
-    },
-  },
-}
-
 export const buildRevealWord: Variants = {
   hidden: {
     opacity: 0,

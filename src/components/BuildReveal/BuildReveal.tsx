@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import type { HeadlineToken } from '@/types/content'
 import { useMotionPreferences } from '@/app/providers'
-import { buildRevealContainer, buildRevealWord } from '@/animations/variants'
+import { buildRevealWord } from '@/animations/variants'
 import { cn } from '@/utils/cn'
 
 interface BuildRevealProps {
@@ -13,6 +13,21 @@ interface BuildRevealProps {
 export function BuildReveal({ tokens, as = 'h2', className }: BuildRevealProps) {
   const { prefersReducedMotion } = useMotionPreferences()
   const MotionTag = motion[as]
+
+  /**
+   * Frases curtas (Hero, CTAs) mantêm o stagger de 0.07s por palavra, que dá o efeito
+   * cinematográfico de "construção". Títulos longos (sentenças de briefing) comprimem o
+   * stagger para não deixar a última palavra pendurada em blur por segundos.
+   */
+  const container: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: Math.min(0.07, 0.5 / tokens.length),
+        delayChildren: 0.04,
+      },
+    },
+  }
 
   if (prefersReducedMotion) {
     const Tag = as
@@ -31,7 +46,7 @@ export function BuildReveal({ tokens, as = 'h2', className }: BuildRevealProps) 
   return (
     <MotionTag
       className={className}
-      variants={buildRevealContainer}
+      variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-10% 0px' }}
