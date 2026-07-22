@@ -10,7 +10,7 @@ export function Empresas() {
   return (
     <section id="empresas" className="py-section-y relative">
       <Container>
-        <p className="text-body text-foreground-muted mb-10 text-center md:mb-14">
+        <p className="text-small text-foreground-muted mx-auto mb-16 max-w-sm text-center md:mb-20 md:max-w-md">
           {empresas.title}
         </p>
       </Container>
