@@ -1,55 +1,68 @@
+import { motion, type Variants } from 'framer-motion'
 import { empresas } from '@/constants/content'
 import { Section } from '@/components/Section'
-import { CompanyMark } from './CompanyMark'
+import { durations } from '@/animations/durations'
+import { easings } from '@/animations/easings'
+import { cn } from '@/utils/cn'
 
-/**
- * Coordenadas curadas manualmente, soltas mas intencionais, alinhadas à mesma escala
- * de malha do Signal Grid — não um grid uniforme, uma constelação.
- */
-const DESKTOP_LAYOUT = [
-  { top: '6%', left: '10%', size: 'text-h2' },
-  { top: '20%', left: '64%', size: 'text-h3' },
-  { top: '50%', left: '32%', size: 'text-body-lg' },
-  { top: '10%', left: '85%', size: 'text-h3' },
-  { top: '64%', left: '6%', size: 'text-h3' },
-  { top: '72%', left: '56%', size: 'text-h2' },
-  { top: '40%', left: '76%', size: 'text-body-lg' },
-  { top: '84%', left: '30%', size: 'text-body-lg' },
-] as const
+/** As duas empresas com maior peso de reconhecimento assumem os blocos-âncora. */
+const ANCHOR_NAMES = ['Nubank', 'Mercado Livre']
 
-/** Atrasos de assentamento não-uniformes — como se cada nome "acendesse" em seu próprio tempo. */
-const ENTRANCE_DELAYS = [0, 0.24, 0.12, 0.36, 0.18, 0.42, 0.3, 0.06]
+const ANCHOR_TILE = 'col-span-2 row-span-1 md:col-span-3 md:row-span-2'
+const REGULAR_TILE = 'col-span-1 row-span-1 md:col-span-2 md:row-span-1'
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.04 } },
+}
+
+const tileVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: durations.base, ease: easings.snap },
+  },
+}
 
 export function Empresas() {
+  const anchors = empresas.companies.filter((c) => ANCHOR_NAMES.includes(c.name))
+  const rest = empresas.companies.filter((c) => !ANCHOR_NAMES.includes(c.name))
+  const tiles = [...anchors, ...rest]
+
   return (
     <Section id="empresas" eyebrow={empresas.eyebrow} title={empresas.title}>
-      {/* Desktop — constelação alinhada à malha do Signal Grid. */}
-      <div className="relative hidden min-h-[clamp(20rem,18rem+10vw,30rem)] md:block">
-        {empresas.companies.map((company, i) => {
-          const layout = DESKTOP_LAYOUT[i % DESKTOP_LAYOUT.length]
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-10% 0px' }}
+        className="bg-border-strong grid grid-cols-2 gap-px overflow-hidden rounded-xl md:grid-cols-6"
+      >
+        {tiles.map((company, i) => {
+          const isAnchor = i < anchors.length
           return (
-            <CompanyMark
+            <motion.div
               key={company.name}
-              name={company.name}
-              size={layout.size}
-              delay={ENTRANCE_DELAYS[i % ENTRANCE_DELAYS.length]}
-              position={{ top: layout.top, left: layout.left }}
-            />
+              variants={tileVariants}
+              className={cn(
+                'bg-elevated flex items-center justify-center px-6 transition-colors',
+                isAnchor ? 'bg-elevated-2 py-8' : 'hover:bg-elevated-2 py-6',
+                isAnchor ? ANCHOR_TILE : REGULAR_TILE,
+              )}
+            >
+              <span
+                className={cn(
+                  'font-medium',
+                  isAnchor ? 'text-h1 text-foreground' : 'text-h3 text-foreground-muted',
+                )}
+              >
+                {company.name}
+              </span>
+            </motion.div>
           )
         })}
-      </div>
-
-      {/* Mobile — sem dispersão 2D; a mesma respiração, numa lista que centraliza. */}
-      <div className="flex flex-wrap justify-center gap-x-8 gap-y-6 md:hidden">
-        {empresas.companies.map((company, i) => (
-          <CompanyMark
-            key={company.name}
-            name={company.name}
-            size="text-h3"
-            delay={ENTRANCE_DELAYS[i % ENTRANCE_DELAYS.length]}
-          />
-        ))}
-      </div>
+      </motion.div>
     </Section>
   )
 }
