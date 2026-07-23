@@ -20,8 +20,8 @@ npm install
 npm run dev
 ```
 
-| Comando              | O que faz                                  |
-| -------------------- | ------------------------------------------- |
+| Comando               | O que faz                                   |
+| --------------------  | ------------------------------------------- |
 | `npm run dev`         | Servidor de desenvolvimento (Vite + HMR)    |
 | `npm run build`       | Type-check (`tsc -b`) + build de produção   |
 | `npm run preview`     | Serve o build de produção localmente        |
