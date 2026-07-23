@@ -1,47 +1,32 @@
+import { motion } from 'framer-motion'
 import { professores } from '@/constants/content'
 import { Section } from '@/components/Section'
-import { RevealGrid } from '@/components/RevealGrid'
-import { Card } from '@/ui/Card'
-import { CornerFrame } from '@/components/CornerFrame'
-import type { InstructorItem } from '@/types/content'
+import { InstructorCard } from './InstructorCard'
 
-function initialsFrom(name: string): string {
-  const words = name.trim().split(/\s+/)
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase()
-  return `${words[0][0]}${words[words.length - 1][0]}`.toUpperCase()
+const gridVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
 }
 
 export function Professores() {
   return (
     <Section id="professores" eyebrow={professores.eyebrow} title={professores.title}>
-      <RevealGrid<InstructorItem>
-        items={professores.instructors}
-        keyExtractor={(instructor) => instructor.name}
-        className="grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
-        renderItem={(instructor) => (
-          <Card interactive className="flex h-full flex-col items-center gap-3 text-center">
-            <CornerFrame className="p-1.5">
-              {instructor.photo ? (
-                <img
-                  src={instructor.photo}
-                  alt={instructor.name}
-                  className="size-14 rounded-full object-cover"
-                />
-              ) : (
-                <div className="bg-elevated-2 text-foreground-muted text-small flex size-14 items-center justify-center rounded-full font-mono">
-                  {initialsFrom(instructor.name)}
-                </div>
-              )}
-            </CornerFrame>
-            <div>
-              <h3 className="text-h3 text-foreground">{instructor.name}</h3>
-              <p className="text-mono-label text-foreground-muted/70 mt-1 font-mono uppercase">
-                {instructor.role}
-              </p>
-            </div>
-          </Card>
-        )}
-      />
+      <motion.div
+        variants={gridVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-10% 0px' }}
+        className="flex flex-wrap justify-center gap-6"
+      >
+        {professores.instructors.map((instructor, i) => (
+          <div
+            key={instructor.name}
+            className="w-[calc(50%-0.75rem)] sm:w-[calc(33.333%-1rem)] md:w-[calc(25%-1.125rem)]"
+          >
+            <InstructorCard instructor={instructor} featured={i === 0} />
+          </div>
+        ))}
+      </motion.div>
     </Section>
   )
 }
