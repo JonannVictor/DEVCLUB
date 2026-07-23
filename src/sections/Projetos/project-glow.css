@@ -1,0 +1,65 @@
+/*
+ * Anel de luz que percorre a borda arredondada continuamente — duas bandas (verde + roxo).
+ * Técnica: ::before gira um conic-gradient sobredimensionado; ::after cobre o miolo com a
+ * cor de fundo do card, deixando só um anel de 1.5px visível (mais robusto que mask-composite,
+ * que vazou o degradê pelo centro do card em teste).
+ */
+.project-card-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-ring::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--color-primary-glow) 6%,
+    transparent 18%,
+    transparent 48%,
+    var(--color-secondary-glow) 54%,
+    transparent 66%,
+    transparent 100%
+  );
+  animation: project-ring-spin 7s linear infinite;
+}
+
+.project-card-ring::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: inherit;
+  background: var(--color-elevated);
+}
+
+.group:hover .project-card-ring {
+  opacity: 0.9;
+}
+
+.group:hover .project-card-ring::before {
+  animation-duration: 3.2s;
+}
+
+@keyframes project-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-ring::before {
+    animation: none;
+  }
+  .project-card-ring {
+    opacity: 0.35;
+  }
+  .group:hover .project-card-ring {
+    opacity: 0.35;
+  }
+}
