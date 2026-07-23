@@ -1,0 +1,114 @@
+.brand-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-bg-base);
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+.brand-intro__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(64px);
+}
+
+.brand-intro__glow--purple {
+  width: 70vmax;
+  height: 70vmax;
+  background: var(--color-secondary-deep);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.brand-intro__glow--green {
+  width: 15vmax;
+  height: 15vmax;
+  background: var(--color-primary-glow);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.brand-intro__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.brand-intro__symbol {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(48vmin, 260px);
+  height: min(48vmin, 260px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(91, 241, 117, 0.45));
+}
+
+.brand-intro__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--color-primary-glow);
+  box-shadow: 0 0 26px 6px var(--color-primary-glow);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.brand-intro__flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.9),
+    rgba(91, 241, 117, 0.35) 38%,
+    transparent 68%
+  );
+}
+
+.brand-intro--revealing {
+  -webkit-mask-image: radial-gradient(
+    circle var(--reveal-r, 0px) at 50% 50%,
+    transparent 0%,
+    transparent 97%,
+    black 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--reveal-r, 0px) at 50% 50%,
+    transparent 0%,
+    transparent 97%,
+    black 100%
+  );
+}
+
+@media (max-width: 640px) {
+  .brand-intro__line--diag {
+    display: none;
+  }
+
+  .brand-intro__glow--purple {
+    width: 95vmax;
+    height: 95vmax;
+  }
+
+  .brand-intro__symbol {
+    width: min(56vmin, 220px);
+    height: min(56vmin, 220px);
+  }
+}

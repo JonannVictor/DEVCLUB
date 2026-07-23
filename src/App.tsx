@@ -1,4 +1,5 @@
 import { AppProviders } from '@/app/providers'
+import { BrandIntro } from '@/components/BrandIntro'
 import { SignalGrid } from '@/components/SignalGrid'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { BranchPath } from '@/components/BranchPath'
@@ -24,6 +25,7 @@ import { CtaFinal } from '@/sections/CtaFinal'
 function App() {
   return (
     <AppProviders>
+      <BrandIntro />
       <SignalGrid />
       <ScrollProgress />
       <Navbar />
