@@ -7,6 +7,7 @@ import { MenuToggle } from './MenuToggle'
 import { MobileMenu } from './MobileMenu'
 
 const NAV_LINKS = [
+  { label: 'Início', href: '#hero' },
   { label: 'Formações', href: '#formacoes' },
   { label: 'Faculdade', href: '#certificacao' },
 ]
@@ -15,7 +16,8 @@ const MOBILE_LINKS = [...NAV_LINKS, { label: 'Área do Aluno', href: '#' }]
 
 export function Navbar() {
   const { scrollY } = useScroll()
-  const glassOpacity = useTransform(scrollY, [0, 80], [0, 1])
+  /** O fundo de vidro fica sempre visível; o scroll só aprofunda um pouco a opacidade. */
+  const glassOpacity = useTransform(scrollY, [0, 80], [0.85, 1])
   const [menuOpen, setMenuOpen] = useState(false)
   const lenis = useLenis()
 
@@ -45,12 +47,23 @@ export function Navbar() {
   return (
     <header id="site-navbar" className="navbar fixed inset-x-0 top-0 z-50 opacity-0">
       <motion.div
-        className="border-glass-border absolute inset-0 border-b backdrop-blur-glass"
+        className="border-glass-border shadow-md absolute inset-0 border-b backdrop-blur-glass"
         style={{ backgroundColor: 'var(--color-glass)', opacity: glassOpacity }}
       />
       <Container className="relative flex items-center justify-between py-4">
-        <a href="#hero" className="text-body font-mono font-medium text-foreground">
-          DevClub
+        <a href="#hero" className="group flex items-center gap-2.5" aria-label="Voltar ao início">
+          <span className="bg-bg-base border-primary/30 group-hover:border-primary/70 group-hover:shadow-glow-primary flex size-8 shrink-0 items-center justify-center rounded-md border transition-all">
+            <svg width="15" height="15" viewBox="0 0 32 32" fill="none" aria-hidden>
+              <path
+                d="M13 10 7 16l6 6M19 10l6 6-6 6"
+                stroke="var(--color-primary)"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          <span className="text-body font-mono font-medium text-foreground">DevClub</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (

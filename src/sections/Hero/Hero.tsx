@@ -192,6 +192,7 @@ export function Hero() {
 
   return (
     <section
+      id="hero"
       ref={containerRef}
       className="relative flex min-h-svh flex-col items-center justify-center gap-8 px-container-x text-center"
     >
