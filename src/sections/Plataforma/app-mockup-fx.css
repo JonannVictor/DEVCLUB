@@ -1,0 +1,71 @@
+/*
+ * Ícones orbitando ao redor do mockup + linha de scan — mesmo espírito do card de terminal
+ * da referência Lovable (ícones girando + luzes), adaptado à identidade DevClub.
+ */
+.orbit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: app-mockup-orbit var(--orbit-duration, 22s) linear infinite;
+  animation-delay: var(--orbit-delay, 0s);
+}
+
+.orbit-icon__chip {
+  transform: translate(-50%, -50%);
+}
+
+@keyframes app-mockup-orbit {
+  from {
+    transform: rotate(0deg) translateX(var(--orbit-radius, 200px)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--orbit-radius, 200px)) rotate(-360deg);
+  }
+}
+
+.app-mockup-scan {
+  position: absolute;
+  inset-inline: 0;
+  height: 3rem;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(91, 241, 117, 0.16),
+    transparent
+  );
+  animation: app-mockup-scan 3.6s ease-in-out infinite;
+}
+
+@keyframes app-mockup-scan {
+  0%,
+  100% {
+    transform: translateY(-3rem);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(220px);
+    opacity: 1;
+  }
+}
+
+.app-mockup-wobble {
+  animation: app-mockup-wobble 9s ease-in-out infinite;
+}
+
+@keyframes app-mockup-wobble {
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-icon,
+  .app-mockup-scan,
+  .app-mockup-wobble {
+    animation: none;
+  }
+}
