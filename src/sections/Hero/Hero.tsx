@@ -200,7 +200,7 @@ export function Hero() {
         <span className="hero-eyebrow-inner inline-block">{hero.eyebrow}</span>
       </span>
 
-      <h1 className="text-display max-w-4xl overflow-x-hidden text-foreground">
+      <h1 className="text-display max-w-4xl overflow-hidden text-foreground">
         {hero.headline.map((token, i) => (
           <span key={i}>
             {token.keyword ? (
