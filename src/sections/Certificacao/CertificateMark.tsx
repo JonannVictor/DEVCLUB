@@ -1,31 +1,26 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useTransform, type MotionValue } from 'framer-motion'
 import { useMotionPreferences } from '@/app/providers'
 import { useScrollTilt } from '@/hooks/useScrollTilt'
 
-/** Progresso 0–1 mapeado à passagem do elemento pela janela de leitura confortável da tela. */
-const SCRUB_OFFSET: ['start 0.85', 'end 0.35'] = ['start 0.85', 'end 0.35']
+interface CertificateMarkProps {
+  /** Progresso 0–1 da seção fixada (pinned) — ver Certificacao.tsx. */
+  progress: MotionValue<number>
+}
 
-export function CertificateMark() {
+export function CertificateMark({ progress }: CertificateMarkProps) {
   const { prefersReducedMotion } = useMotionPreferences()
-  const containerRef = useRef<HTMLDivElement>(null)
   const tilt = useScrollTilt({ strength: 2 })
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: SCRUB_OFFSET,
-  })
-
-  const borderDraw = useTransform(scrollYProgress, [0, 0.18], [1, 0])
-  const fieldsOpacity = useTransform(scrollYProgress, [0.16, 0.34], [0, 1])
-  const fieldsX = useTransform(scrollYProgress, [0.16, 0.34], [-10, 0])
-  const sealScale = useTransform(scrollYProgress, [0.34, 0.54], [0.5, 1])
-  const sealOpacity = useTransform(scrollYProgress, [0.34, 0.5], [0, 1])
-  const sealRotate = useTransform(scrollYProgress, [0.34, 0.54], [-30, 0])
-  const checkDraw = useTransform(scrollYProgress, [0.46, 0.72], [1, 0])
-  const glowOpacity = useTransform(scrollYProgress, [0.6, 0.8, 1], [0, 0.9, 0.55])
-  const shineX = useTransform(scrollYProgress, [0.68, 1], [-140, 340])
-  const shineOpacity = useTransform(scrollYProgress, [0.68, 0.8, 1], [0, 0.8, 0])
+  const borderDraw = useTransform(progress, [0, 0.18], [1, 0])
+  const fieldsOpacity = useTransform(progress, [0.16, 0.34], [0, 1])
+  const fieldsX = useTransform(progress, [0.16, 0.34], [-10, 0])
+  const sealScale = useTransform(progress, [0.34, 0.54], [0.5, 1])
+  const sealOpacity = useTransform(progress, [0.34, 0.5], [0, 1])
+  const sealRotate = useTransform(progress, [0.34, 0.54], [-30, 0])
+  const checkDraw = useTransform(progress, [0.46, 0.72], [1, 0])
+  const glowOpacity = useTransform(progress, [0.6, 0.8, 1], [0, 0.9, 0.55])
+  const shineX = useTransform(progress, [0.68, 1], [-140, 340])
+  const shineOpacity = useTransform(progress, [0.68, 0.8, 1], [0, 0.8, 0])
 
   const staticProps = prefersReducedMotion
     ? {
@@ -44,7 +39,7 @@ export function CertificateMark() {
         className="bg-primary/15 pointer-events-none absolute top-1/2 left-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
       />
 
-      <motion.div ref={containerRef} style={{ rotate: prefersReducedMotion ? 0 : tilt }}>
+      <motion.div style={{ rotate: prefersReducedMotion ? 0 : tilt }}>
         <svg viewBox="0 0 320 220" fill="none" className="relative w-full" aria-hidden>
           <defs>
             <linearGradient id="cert-card-fill" x1="0" y1="0" x2="320" y2="220" gradientUnits="userSpaceOnUse">
