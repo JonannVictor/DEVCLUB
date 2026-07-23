@@ -1,12 +1,18 @@
 import { motion } from 'framer-motion'
 import { durations } from '@/animations/durations'
 import { easings } from '@/animations/easings'
+import { useScrollTilt } from '@/hooks/useScrollTilt'
 
 const viewport = { once: true, margin: '-15% 0px' } as const
 
 export function GuaranteeShield() {
+  const tilt = useScrollTilt({ strength: 2 })
+
   return (
-    <div className="mx-auto w-full max-w-[220px] sm:max-w-[260px]">
+    <motion.div
+      className="mx-auto w-full max-w-[220px] sm:max-w-[260px]"
+      style={{ rotate: tilt }}
+    >
       <svg viewBox="0 0 200 220" fill="none" className="w-full" aria-hidden>
         <motion.path
           d="M100 8 176 36v58c0 56-34 92-76 118C58 186 24 150 24 94V36z"
@@ -52,6 +58,6 @@ export function GuaranteeShield() {
           style={{ transformOrigin: '100px 100px' }}
         />
       </svg>
-    </div>
+    </motion.div>
   )
 }

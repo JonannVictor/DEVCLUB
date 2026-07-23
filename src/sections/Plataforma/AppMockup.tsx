@@ -1,17 +1,21 @@
 import { motion } from 'framer-motion'
 import { durations } from '@/animations/durations'
 import { easings } from '@/animations/easings'
+import { useScrollTilt } from '@/hooks/useScrollTilt'
 
 const viewport = { once: true, margin: '-15% 0px' } as const
 const STEPS = [64, 148, 232, 316]
 
 export function AppMockup() {
+  const tilt = useScrollTilt({ strength: 2.5 })
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96, y: 12 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={viewport}
       transition={{ duration: durations.slow, ease: easings.punch }}
+      style={{ rotate: tilt }}
       className="border-border bg-elevated overflow-hidden rounded-xl border shadow-lg"
     >
       <div className="border-border bg-elevated-2 flex items-center gap-2 border-b px-4 py-3">

@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion'
 import { durations } from '@/animations/durations'
 import { easings } from '@/animations/easings'
+import { useScrollTilt } from '@/hooks/useScrollTilt'
 
 const viewport = { once: true, margin: '-15% 0px' } as const
 
 export function CertificateMark() {
+  const tilt = useScrollTilt({ strength: 2 })
+
   return (
-    <div className="mx-auto w-full max-w-sm sm:max-w-md">
+    <motion.div className="mx-auto w-full max-w-sm sm:max-w-md" style={{ rotate: tilt }}>
       <svg viewBox="0 0 320 220" fill="none" className="w-full" aria-hidden>
         <motion.rect
           x={4}
@@ -58,6 +61,6 @@ export function CertificateMark() {
           />
         </motion.g>
       </svg>
-    </div>
+    </motion.div>
   )
 }

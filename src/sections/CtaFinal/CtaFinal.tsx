@@ -42,7 +42,7 @@ export function CtaFinal() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: 'easeOut' }}
           />
-          <Button href={ctaFinal.primaryCta.href} size="lg">
+          <Button href={ctaFinal.primaryCta.href} size="lg" magnetic>
             {ctaFinal.primaryCta.label}
           </Button>
         </motion.div>

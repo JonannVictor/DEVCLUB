@@ -70,7 +70,7 @@ export function Navbar() {
           >
             Área do Aluno
           </a>
-          <Button href="#formacoes" size="md" variant="ghost">
+          <Button href="#formacoes" size="md" variant="ghost" magnetic>
             Quero ser aluno
           </Button>
         </div>

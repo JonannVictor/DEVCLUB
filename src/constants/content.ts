@@ -188,6 +188,11 @@ export const projetos = {
   ] satisfies ProjectItem[],
 }
 
+export const jornada = {
+  title: 'Do código ao deploy.',
+  subtitle: 'Role a página para ver a jornada DevClub, frame por frame.',
+}
+
 export const comunidade = {
   eyebrow: 'Comunidade',
   title: 'Você não caminha sozinho.',

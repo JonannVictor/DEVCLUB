@@ -221,7 +221,9 @@ export function Hero() {
       </p>
 
       <div className="hero-cta flex flex-wrap items-center justify-center gap-4">
-        <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
+        <Button href={hero.primaryCta.href} magnetic>
+          {hero.primaryCta.label}
+        </Button>
         {hero.secondaryCta && (
           <Button href={hero.secondaryCta.href} variant="ghost">
             {hero.secondaryCta.label}

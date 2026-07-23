@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Projeto de referência externo (Lovable) — não faz parte deste repositório
+DevClub Animation Showcase/
