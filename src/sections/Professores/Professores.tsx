@@ -21,9 +21,17 @@ export function Professores() {
         renderItem={(instructor) => (
           <Card interactive className="flex h-full flex-col items-center gap-3 text-center">
             <CornerFrame className="p-1.5">
-              <div className="bg-elevated-2 text-foreground-muted text-small flex size-14 items-center justify-center rounded-full font-mono">
-                {initialsFrom(instructor.name)}
-              </div>
+              {instructor.photo ? (
+                <img
+                  src={instructor.photo}
+                  alt={instructor.name}
+                  className="size-14 rounded-full object-cover"
+                />
+              ) : (
+                <div className="bg-elevated-2 text-foreground-muted text-small flex size-14 items-center justify-center rounded-full font-mono">
+                  {initialsFrom(instructor.name)}
+                </div>
+              )}
             </CornerFrame>
             <div>
               <h3 className="text-h3 text-foreground">{instructor.name}</h3>

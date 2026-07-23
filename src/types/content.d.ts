@@ -33,12 +33,16 @@ export interface InstructorItem {
   name: string
   role: string
   bio?: string
+  /** Foto real do instrutor. Ausente = usa iniciais como placeholder. */
+  photo?: string
 }
 
 export interface TestimonialItem {
   quote: string
   name: string
   role: string
+  /** Foto real do aluno. Ausente = usa iniciais como placeholder. */
+  photo?: string
 }
 
 export interface StatItem {

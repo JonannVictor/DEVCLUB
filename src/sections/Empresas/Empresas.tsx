@@ -12,7 +12,7 @@ export function Empresas() {
   return (
     <section id="empresas" className="py-section-y relative">
       <Container className="flex flex-col items-center">
-        <Badge className="mb-5">
+        <Badge className="border-secondary/40 mb-5">
           <CountUp value={empresas.alumniStat} className="mr-1" />
           {empresas.alumniLabel}
         </Badge>

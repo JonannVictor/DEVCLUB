@@ -48,7 +48,7 @@ export function Card({ children, interactive, className }: CardProps) {
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{
             background:
-              'radial-gradient(circle 220px at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(111, 160, 255, 0.12), transparent 70%)',
+              'radial-gradient(circle 220px at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(91, 241, 117, 0.12), transparent 70%)',
           }}
         />
       )}

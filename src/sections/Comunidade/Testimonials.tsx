@@ -11,6 +11,12 @@ interface TestimonialsProps {
 
 const AUTOPLAY_MS = 5500
 
+function initialsFrom(name: string): string {
+  const words = name.trim().split(/\s+/)
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase()
+  return `${words[0][0]}${words[words.length - 1][0]}`.toUpperCase()
+}
+
 export function Testimonials({ items }: TestimonialsProps) {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -33,7 +39,7 @@ export function Testimonials({ items }: TestimonialsProps) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative h-[280px] sm:h-[220px]">
+      <div className="relative h-[300px] sm:h-[240px]">
         {items.map((item, i) => {
           const offset = i - index
           const dist = Math.abs(offset)
@@ -60,11 +66,24 @@ export function Testimonials({ items }: TestimonialsProps) {
                 "
               </span>
               <p className="text-body text-foreground-muted -mt-4">{item.quote}</p>
-              <div className="mt-4">
-                <p className="text-small text-foreground font-medium">{item.name}</p>
-                <p className="text-mono-label text-foreground-muted/70 font-mono uppercase">
-                  {item.role}
-                </p>
+              <div className="mt-4 flex items-center gap-3">
+                {item.photo ? (
+                  <img
+                    src={item.photo}
+                    alt={item.name}
+                    className="size-10 shrink-0 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="bg-elevated-2 text-foreground-muted text-small flex size-10 shrink-0 items-center justify-center rounded-full font-mono">
+                    {initialsFrom(item.name)}
+                  </div>
+                )}
+                <div>
+                  <p className="text-small text-foreground font-medium">{item.name}</p>
+                  <p className="text-mono-label text-foreground-muted/70 font-mono uppercase">
+                    {item.role}
+                  </p>
+                </div>
               </div>
             </motion.div>
           )

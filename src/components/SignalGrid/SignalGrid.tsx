@@ -34,7 +34,15 @@ export function SignalGrid() {
 
   if (prefersReducedMotion) {
     return (
-      <div className="fixed inset-0 -z-10" aria-hidden>
+      <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden>
+        <div
+          className="signal-grid__glow"
+          style={{ width: 560, height: 560, top: '-12%', left: '-10%' }}
+        />
+        <div
+          className="signal-grid__glow"
+          style={{ width: 420, height: 420, bottom: '-10%', right: '-8%' }}
+        />
         <div className="signal-grid__mesh" />
       </div>
     )
@@ -42,6 +50,14 @@ export function SignalGrid() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden>
+      <div
+        className="signal-grid__glow"
+        style={{ width: 560, height: 560, top: '-12%', left: '-10%' }}
+      />
+      <div
+        className="signal-grid__glow"
+        style={{ width: 420, height: 420, bottom: '-10%', right: '-8%' }}
+      />
       <div className="signal-grid__mesh" />
       <div className="signal-grid__noise" />
       {/* Dormente até a Hero acordar o sistema (Ato 1) — ver Hero.tsx, que controla esta opacidade via GSAP. */}

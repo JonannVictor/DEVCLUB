@@ -1,3 +1,11 @@
+.signal-grid__glow {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--color-secondary-deep);
+  filter: blur(140px);
+  opacity: 0.4;
+}
+
 .signal-grid__mesh {
   position: absolute;
   inset: 0;

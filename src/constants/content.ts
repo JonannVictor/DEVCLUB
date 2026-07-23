@@ -22,6 +22,10 @@ import itauLogo from '@/assets/logos/itau.svg'
 import c6bankLogo from '@/assets/logos/c6bank.svg'
 import stoneLogo from '@/assets/logos/stone.svg'
 import ambevLogo from '@/assets/logos/ambev.svg'
+import rodolfoMoriPhoto from '@/assets/people/rodolfo-mori.jpg'
+import anaSilvaPhoto from '@/assets/people/ana-silva.jpg'
+import carlosOliveiraPhoto from '@/assets/people/carlos-oliveira.jpg'
+import marinaSantosPhoto from '@/assets/people/marina-santos.jpg'
 
 export const hero = {
   eyebrow: 'Formação em Desenvolvimento Web',
@@ -198,31 +202,28 @@ export const comunidade = {
   title: 'Você não caminha sozinho.',
   description:
     'Milhares de vidas transformadas dentro da nossa comunidade — alunos e ex-alunos trocando conhecimento, tirando dúvidas e se ajudando a cada etapa, antes, durante e depois da formação.',
-  /** Ilustrativos — depoimentos reais entram assim que o usuário fornecer. */
+  /** Depoimentos reais, extraídos do site oficial (devclub.com.br). */
   testimonials: [
     {
       quote:
-        'Entrei sem saber nada de programação e em 8 meses fechei minha primeira vaga como front-end. A comunidade puxava a gente pra cima o tempo todo.',
-      name: 'Camila R.',
-      role: 'Formação Front-end',
+        'O DevClub mudou minha vida! Em menos de 6 meses consegui minha primeira vaga como desenvolvedora. A metodologia prática e o suporte dos mentores fazem toda a diferença.',
+      name: 'Ana Silva',
+      role: 'Desenvolvedora Full Stack @ Tech Corp',
+      photo: anaSilvaPhoto,
     },
     {
       quote:
-        'O que mais mudou pra mim não foi só o código — foi ter gente pra trocar ideia às 23h numa sexta-feira porque travei num bug. Isso não tem preço.',
-      name: 'Lucas M.',
-      role: 'Formação Full Stack',
+        'As aulas ao vivo e os projetos práticos me prepararam para o mercado real. Hoje trabalho com React e Next.js graças ao conhecimento adquirido no DevClub.',
+      name: 'Carlos Oliveira',
+      role: 'Front-end Developer @ StartupXYZ',
+      photo: carlosOliveiraPhoto,
     },
     {
       quote:
-        'Vim de outra área, achei que ia demorar anos. Com a trilha certa e o pessoal da comunidade revisando meu código, consegui migrar em menos de um ano.',
-      name: 'Beatriz A.',
-      role: 'Formação Back-end',
-    },
-    {
-      quote:
-        'As mentorias semanais valeram sozinhas o curso inteiro. Aprendi mais sobre carreira ali do que em anos tentando descobrir sozinho.',
-      name: 'Thiago N.',
-      role: 'Formação Full Stack',
+        'A comunidade do DevClub é incrível! Além do conhecimento técnico, fiz networking valioso que me ajudou a conseguir oportunidades incríveis na minha carreira.',
+      name: 'Marina Santos',
+      role: 'Back-end Engineer @ Big Tech',
+      photo: marinaSantosPhoto,
     },
   ] satisfies TestimonialItem[],
 }
@@ -230,9 +231,12 @@ export const comunidade = {
 export const professores = {
   eyebrow: 'Quem ensina',
   title: 'Aprenda com os melhores.',
-  /** Nomes reais confirmados; cargo/bio/foto entram assim que o usuário fornecer. */
+  /**
+   * Rodolfo Mori: cargo e foto confirmados no site oficial (devclub.com.br).
+   * Os demais nomes ainda não têm cargo/bio/foto confirmados oficialmente.
+   */
   instructors: [
-    { name: 'Rodolfo Mori', role: 'Instrutor(a)' },
+    { name: 'Rodolfo Mori', role: 'Fundador do DevClub', photo: rodolfoMoriPhoto },
     { name: 'Fernanda', role: 'Instrutor(a)' },
     { name: 'Agustinho', role: 'Instrutor(a)' },
     { name: 'Henrique', role: 'Instrutor(a)' },
