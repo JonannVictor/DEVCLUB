@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion'
 import { tecnologias } from '@/constants/content'
 import { Section } from '@/components/Section'
-import { assemblyRowContainer, assemblyItem } from '@/animations/assemblyReveal'
-import '@/styles/tech-scroll.css'
+import '@/styles/tech-marquee.css'
 
 export function Tecnologias() {
+  const track = [...tecnologias.items, ...tecnologias.items]
+
   return (
     <Section
       id="tecnologias"
@@ -12,23 +12,19 @@ export function Tecnologias() {
       title={tecnologias.title}
       description={tecnologias.description}
     >
-      <motion.div
-        variants={assemblyRowContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-15% 0px' }}
-        className="tech-scroll -mx-container-x flex snap-x snap-mandatory gap-3 overflow-x-auto px-container-x py-2"
-      >
-        {tecnologias.items.map((item, i) => (
-          <motion.span
-            key={item.name}
-            variants={assemblyItem(i % 2 === 0 ? 'left' : 'right')}
-            className="border-border-strong bg-elevated text-small text-foreground shrink-0 snap-start rounded-sm border px-4 py-2 font-mono whitespace-nowrap"
-          >
-            {item.name}
-          </motion.span>
-        ))}
-      </motion.div>
+      <div className="tech-marquee relative overflow-hidden py-2" aria-label="Tecnologias e trilhas">
+        <div className="tech-marquee__track flex w-max gap-3">
+          {track.map((item, i) => (
+            <span
+              key={`${item.name}-${i}`}
+              aria-hidden={i >= tecnologias.items.length}
+              className="border-border-strong bg-elevated text-small text-foreground shrink-0 rounded-sm border px-4 py-2 font-mono whitespace-nowrap"
+            >
+              {item.name}
+            </span>
+          ))}
+        </div>
+      </div>
     </Section>
   )
 }

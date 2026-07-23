@@ -1,0 +1,37 @@
+.tech-marquee {
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+}
+
+/*
+ * Mesma técnica das faixas de Empresas e Módulos Bônus: dois blocos idênticos lado a lado,
+ * animar até -50% move exatamente um bloco inteiro para fora — loop perfeito.
+ */
+.tech-marquee__track {
+  animation: tech-marquee-scroll 45s linear infinite;
+}
+
+.tech-marquee__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tech-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee__track {
+    animation: none;
+  }
+}
