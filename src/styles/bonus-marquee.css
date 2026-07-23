@@ -31,8 +31,9 @@
 }
 
 /*
- * Mesma técnica da faixa de logos da Empresas: dois blocos idênticos lado a lado,
- * animar até -50% move exatamente um bloco inteiro para fora — loop perfeito.
+ * A faixa contém 5 blocos idênticos lado a lado (suficiente para não deixar vão vazio em
+ * monitores ultrawide); animar até -20% (1/5) move exatamente um bloco inteiro para fora —
+ * loop fecha sem salto, sem depender de medir largura via JS.
  */
 .bonus-marquee__track {
   animation: bonus-marquee-scroll 38s linear infinite;
@@ -47,7 +48,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-20%);
   }
 }
 

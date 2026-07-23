@@ -10,8 +10,9 @@
 }
 
 /*
- * Mesma técnica das faixas de Empresas e Módulos Bônus: dois blocos idênticos lado a lado,
- * animar até -50% move exatamente um bloco inteiro para fora — loop perfeito.
+ * Mesma técnica das faixas de Empresas e Módulos Bônus, com 3 blocos idênticos lado a lado
+ * (suficiente para não deixar vão vazio em monitores ultrawide); animar até -33.3333% (1/3)
+ * move exatamente um bloco inteiro para fora — loop perfeito.
  */
 .tech-marquee__track {
   animation: tech-marquee-scroll 45s linear infinite;
@@ -26,7 +27,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-33.3333%);
   }
 }
 

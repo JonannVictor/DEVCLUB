@@ -2,8 +2,11 @@ import { tecnologias } from '@/constants/content'
 import { Section } from '@/components/Section'
 import '@/styles/tech-marquee.css'
 
+/** Repetições suficientes para cobrir monitores ultrawide sem deixar vão vazio na faixa. */
+const REPEATS = 3
+
 export function Tecnologias() {
-  const track = [...tecnologias.items, ...tecnologias.items]
+  const track = Array.from({ length: REPEATS }, () => tecnologias.items).flat()
 
   return (
     <Section

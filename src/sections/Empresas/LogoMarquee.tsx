@@ -5,9 +5,12 @@ interface LogoMarqueeProps {
   companies: CompanyItem[]
 }
 
-/** Faixa monocromática com scroll linear contínuo e loop perfeito (dois blocos idênticos). */
+/** Repetições suficientes para cobrir monitores ultrawide sem deixar vão vazio na faixa. */
+const REPEATS = 4
+
+/** Faixa monocromática com scroll linear contínuo e loop perfeito (blocos idênticos). */
 export function LogoMarquee({ companies }: LogoMarqueeProps) {
-  const track = [...companies, ...companies]
+  const track = Array.from({ length: REPEATS }, () => companies).flat()
 
   return (
     <div className="logo-marquee relative overflow-hidden py-2" aria-label="Empresas parceiras">

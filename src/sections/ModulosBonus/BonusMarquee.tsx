@@ -9,8 +9,11 @@ interface BonusMarqueeProps {
   items: SimpleCard[]
 }
 
+/** Repetições suficientes para cobrir monitores ultrawide sem deixar vão vazio na faixa. */
+const REPEATS = 5
+
 export function BonusMarquee({ items }: BonusMarqueeProps) {
-  const track = [...items, ...items]
+  const track = Array.from({ length: REPEATS }, () => items).flat()
 
   return (
     <div className="bonus-marquee relative overflow-hidden py-2" aria-label="Módulos bônus">

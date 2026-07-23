@@ -10,9 +10,9 @@
 }
 
 /*
- * A faixa contém dois blocos idênticos de logos lado a lado; animar translateX até -50%
- * move exatamente um bloco inteiro para fora — o loop fecha sem salto, sem depender de
- * medir largura via JS.
+ * A faixa contém 4 blocos idênticos de logos lado a lado (suficiente para não deixar vão
+ * vazio em monitores ultrawide); animar translateX até -25% (1/4) move exatamente um bloco
+ * inteiro para fora — o loop fecha sem salto, sem depender de medir largura via JS.
  */
 .logo-marquee__track {
   animation: logo-marquee-scroll 70s linear infinite;
@@ -23,7 +23,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 
