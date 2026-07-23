@@ -6,7 +6,7 @@ import { AppMockup } from './AppMockup'
 
 export function Plataforma() {
   return (
-    <section id="plataforma" className="py-section-y relative">
+    <section id="plataforma" className="py-section-y relative overflow-x-hidden">
       <Container>
         <SectionHeading eyebrow={plataforma.eyebrow} title={plataforma.title} align="left" />
 
