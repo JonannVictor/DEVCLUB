@@ -72,6 +72,8 @@ export function InstructorCard({ instructor, featured }: InstructorCardProps) {
             <img
               src={instructor.photo}
               alt={instructor.name}
+              width={320}
+              height={480}
               className="size-full rounded-full object-cover"
               style={{ objectPosition: '50% 12%' }}
             />

@@ -11,7 +11,7 @@ export function CtaFinal() {
     <section id="cta-final" className="py-section-y relative">
       <Container className="flex flex-col items-center gap-6 text-center">
         <BuildReveal
-          as="h1"
+          as="h2"
           tokens={toTokens(ctaFinal.title)}
           className="text-h1 text-foreground max-w-3xl"
         />

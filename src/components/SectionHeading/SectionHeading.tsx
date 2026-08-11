@@ -28,7 +28,7 @@ export function SectionHeading({
         {eyebrow}
       </MaskReveal>
 
-      <BuildReveal as="h1" tokens={toTokens(title)} className="text-h1 text-foreground max-w-3xl" />
+      <BuildReveal as="h2" tokens={toTokens(title)} className="text-h1 text-foreground max-w-3xl" />
 
       {description && (
         <motion.p

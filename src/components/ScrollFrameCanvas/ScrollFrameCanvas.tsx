@@ -187,6 +187,8 @@ export function ScrollFrameCanvas() {
           src={FRAME_URLS[FRAME_COUNT - 1]}
           alt=""
           aria-hidden
+          width={1280}
+          height={720}
           className="mx-auto max-w-4xl rounded-xl border border-border opacity-80"
         />
         <div className="mx-auto mt-8 max-w-2xl text-center">
