@@ -95,11 +95,22 @@ export function Testimonials({ items }: TestimonialsProps) {
           type="button"
           onClick={() => go(-1)}
           aria-label="Depoimento anterior"
-          className="border-border text-foreground-muted hover:border-primary hover:text-primary flex size-9 items-center justify-center rounded-full border transition-colors"
+          className="group flex size-11 items-center justify-center"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-            <path d="M10 3 5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <span
+            aria-hidden
+            className="border-border text-foreground-muted group-hover:border-primary group-hover:text-primary flex size-9 items-center justify-center rounded-full border transition-colors"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path
+                d="M10 3 5 8l5 5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
         </button>
 
         <div className="flex items-center gap-2">
@@ -109,15 +120,20 @@ export function Testimonials({ items }: TestimonialsProps) {
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`Ver depoimento ${i + 1}`}
-              className="bg-border relative h-1.5 overflow-hidden rounded-full transition-[width]"
-              style={{ width: i === index ? 24 : 6 }}
+              className="-mx-2 -my-3.5 flex items-center px-2 py-3.5"
             >
-              <motion.span
+              <span
                 aria-hidden
-                className="bg-primary absolute inset-0"
-                animate={{ x: i === index ? 0 : '-100%' }}
-                transition={{ duration: durations.base, ease: easings.snap }}
-              />
+                className="bg-border relative block h-1.5 overflow-hidden rounded-full transition-[width]"
+                style={{ width: i === index ? 24 : 6 }}
+              >
+                <motion.span
+                  aria-hidden
+                  className="bg-primary absolute inset-0"
+                  animate={{ x: i === index ? 0 : '-100%' }}
+                  transition={{ duration: durations.base, ease: easings.snap }}
+                />
+              </span>
             </button>
           ))}
         </div>
@@ -126,11 +142,22 @@ export function Testimonials({ items }: TestimonialsProps) {
           type="button"
           onClick={() => go(1)}
           aria-label="Próximo depoimento"
-          className="border-border text-foreground-muted hover:border-primary hover:text-primary flex size-9 items-center justify-center rounded-full border transition-colors"
+          className="group flex size-11 items-center justify-center"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-            <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <span
+            aria-hidden
+            className="border-border text-foreground-muted group-hover:border-primary group-hover:text-primary flex size-9 items-center justify-center rounded-full border transition-colors"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path
+                d="M6 3l5 5-5 5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
         </button>
       </div>
     </div>

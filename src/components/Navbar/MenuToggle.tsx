@@ -17,7 +17,7 @@ export function MenuToggle({ open, onClick }: MenuToggleProps) {
       aria-label={open ? 'Fechar menu' : 'Abrir menu'}
       aria-expanded={open}
       aria-controls="mobile-menu"
-      className="relative flex size-9 items-center justify-center md:hidden"
+      className="relative flex size-11 items-center justify-center md:hidden"
     >
       <motion.span
         aria-hidden
